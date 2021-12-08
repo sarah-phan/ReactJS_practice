@@ -10,6 +10,7 @@ import ListKey from './list-key';
 import Example from './list-key/example';
 import Communication from './communication';
 import LiftingStateUpCart from './shopping-cart';
+import Home from './userManagement';
 
 function App() {
   return (
@@ -30,7 +31,8 @@ function App() {
       {/* <ListKey/>
       <Example/> */}
       {/* <Communication/> */}
-      <LiftingStateUpCart/>
+      {/* <LiftingStateUpCart/> */}
+      <Home/>
     </div>
   );
 }
