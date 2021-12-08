@@ -1,0 +1,26 @@
+I. Mới bắt đầu dự án, tạo folder -> terminal -> create-react-app tenfolder (ko viết hoa) -> npm start
+
+1. component 
+    - từng file nhỏ với file chính là index.
+    - import file nhỏ vào file index 
+    -> dễ quản lý + maintanence
+
+    a. stateful component: tạo theo class (Baitap1)
+    b. stateless component: tạo theo function (Baitap2)
+2. SPA: Single page application
+    - nếu từ page 1 sang page 2 không bị load lại gọi là SPA -> mượt hơn 
+        + chỉ load lại những phần nội dung khác nhau, còn giống nhau, cố định sẽ giữ nguyên
+        + render ở client
+        + sale ở gg tốt hơn
+    - ngược lại bị load lại trang sẽ bị lag -> multi-page
+        + render ở server
+        + sale ở gg kém
+3. có thể xóa node-module và tải lại đc bằng npm install, lấy lại dữ liệu bằng package.json nên không được xóa
+4. trong src có những file js giống khi làm html chứa js + html = jsx
+    - index là file lớn nhất và đây là file đọc các file lân cận
+5. React sẽ ko DOM trực tiếp mà dùng Virtual DOM
+6. Communication:
+    - Props: Truyền dữ liệu từ component father -> child
+    - Lifting state up: truyền dữ liệu từ component child -> father
+    Không có truyền dữ liệu giữa child (đồng cấp)
+    Nếu child 2 là child của child 1, child 1 là child của father -> child 2 và father có mối liên hệ
