@@ -9,6 +9,7 @@ class Home extends Component {
     super(props);
     this.state = {
       listUser: data,
+      keyword: "",
     };
   }
 
@@ -29,15 +30,43 @@ class Home extends Component {
         listUser,
       })
     }
-   
+  }
+
+  handleSubmit = (user) => {
+    let listUser = [...this.state.listUser];
+    
+    // user.id = new Date().getTime();
+    // Do có khả năng id bị trùng => lỗi nên clone lại user cũ cho userNew và thêm tự thêm id
+    const userNew = {...user, id: new Date().getTime()};
+    
+    listUser.push(userNew);
+    // console.log(user);
+    
+    this.setState({
+      listUser,
+    }, () => {
+      console.log(listUser);
+    })
+  }
+
+  handleSearch = (keyword) => {
+    // console.log(keyword);
+    this.setState({
+      keyword,
+    });
   }
 
   render() {
+    let {listUser, keyword} = this.state;
+    listUser = this.state.listUser.filter((user) => {
+      return user.fullname.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
+    });
+    console.log(listUser)
     return (
       <div className="container">
         <h1 className="display-4 text-center my-3">User Management</h1>
         <div className="d-flex justify-content-between align-items-center">
-          <Search />
+          <Search searchValue={this.handleSearch}/>
           <button
             className="btn btn-success"
             data-toggle="modal"
@@ -47,10 +76,13 @@ class Home extends Component {
           </button>
         </div>
         <Users 
-        listUser = {this.state.listUser}
+        // listUser = {this.state.listUser}
+        // vì sau render thì vẫn có data cũ, sau khi search (lấy value) thì mới hiện ra kết quả search, xóa value thì vẫn trả về data cũ và hiện cũ
+        listUser = {listUser}
         deleteUser = {this.handleDelete}
         />
-        <Modal />
+        <Modal 
+        getUserSubmit={this.handleSubmit}/>
       </div>
     );
   }
