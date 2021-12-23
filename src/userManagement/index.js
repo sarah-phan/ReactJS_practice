@@ -10,6 +10,7 @@ class Home extends Component {
     this.state = {
       listUser: data,
       keyword: "",
+      userEdit: null,
     };
   }
 
@@ -56,6 +57,12 @@ class Home extends Component {
     });
   }
 
+  handleEdit = (user) => {
+    this.setState ({
+      userEdit: user,
+    });
+  }
+
   render() {
     let {listUser, keyword} = this.state;
     listUser = this.state.listUser.filter((user) => {
@@ -71,6 +78,11 @@ class Home extends Component {
             className="btn btn-success"
             data-toggle="modal"
             data-target="#modelIdUser"
+            onClick={() => {
+              this.setState({
+                userEdit: null,
+              });
+            }}
           >
             Add User
           </button>
@@ -80,9 +92,12 @@ class Home extends Component {
         // vì sau render thì vẫn có data cũ, sau khi search (lấy value) thì mới hiện ra kết quả search, xóa value thì vẫn trả về data cũ và hiện cũ
         listUser = {listUser}
         deleteUser = {this.handleDelete}
+        getUserEdit = {this.handleEdit}
         />
         <Modal 
-        getUserSubmit={this.handleSubmit}/>
+        getUserSubmit={this.handleSubmit}
+        userEditModal= {this.state.userEdit}
+        />
       </div>
     );
   }

@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import {actOnChange} from "./../redux/actions";
 
 class Modal extends Component {
   constructor(props){
@@ -26,9 +28,12 @@ class Modal extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.getUserSubmit(this.state);
+    // this.props.getUserSubmit(this.state);
+
+    this.props.onSubmit(this.state);
+    // this.closeModal.current.click();
   }
-  
+
   UNSAFE_componentWillReceiveProps(nextProps) {
     console.log(nextProps);
     if (nextProps && nextProps.userEdit) {
@@ -52,9 +57,9 @@ class Modal extends Component {
       });
     }
   }
+
   render() {
-    // không được setState trong render do khi vào render thì phải rết
-    console.log(this.props.userEditModal)
+    // console.log(this.props.userEditModal)
     return (
       <div
         className="modal fade"
@@ -68,7 +73,7 @@ class Modal extends Component {
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title">
-                {this.props.userEditModal ? "EDIT USER" : "ADD USER"}
+                {this.props.userEdit ? "EDIT USER" : "ADD USER"}
               </h5>
               <button
                 type="button"
@@ -146,4 +151,17 @@ class Modal extends Component {
   }
 }
 
-export default Modal;
+const mapDispatchToProps = (dispatch) => {
+  return{
+    onSubmit: (user) => {
+      dispatch(actOnChange(user));
+    },
+  };
+};
+
+const mapStateToProp = (state) => {
+    return{
+      userEdit: state.userReducer.userEdit,
+    }
+}
+export default connect(mapStateToProp,mapDispatchToProps)(Modal);

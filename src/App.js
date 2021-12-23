@@ -10,7 +10,10 @@ import ListKey from './list-key';
 import Example from './list-key/example';
 import Communication from './communication';
 import LiftingStateUpCart from './shopping-cart';
-import Home from './userManagement';
+// import Home from './userManagement';
+import Home from './userManagementRedux';
+import FormValidation from './formValidation';
+import LifeCycle from './lifecycle';
 
 function App() {
   return (
@@ -32,7 +35,10 @@ function App() {
       <Example/> */}
       {/* <Communication/> */}
       {/* <LiftingStateUpCart/> */}
-      <Home/>
+      {/* <Home/> */}
+      {/* <Home/> */}
+      {/* <FormValidation/> */}
+      <LifeCycle/>
     </div>
   );
 }

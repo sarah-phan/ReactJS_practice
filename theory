@@ -1,4 +1,7 @@
-I. Mới bắt đầu dự án, tạo folder -> terminal -> create-react-app tenfolder (ko viết hoa) -> npm start
+I. Mới bắt đầu dự án, tạo folder -> terminal -> npm install create-react-app -g 
+-> create-react-app tenfolder (ko viết hoa) -> npm start
+
+II. Cài bs: npm install bootstrap@5.3
 
 1. component 
     - từng file nhỏ với file chính là index.
@@ -24,3 +27,8 @@ I. Mới bắt đầu dự án, tạo folder -> terminal -> create-react-app ten
     - Lifting state up: truyền dữ liệu từ component child -> father
     Không có truyền dữ liệu giữa child (đồng cấp)
     Nếu child 2 là child của child 1, child 1 là child của father -> child 2 và father có mối liên hệ
+
+
+Redux là library ngoài, ko thuộc react
+Muốn dùng fai install -> npm install redux react-redux --save 
+(react-redux để connect được vs nhau)

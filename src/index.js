@@ -11,10 +11,24 @@ import "jquery/dist/jquery.min.js"
 import "popper.js/dist/umd/popper.min.js"
 import "bootstrap/dist/js/bootstrap.min.js"
 
+// redux:
+import {createStore} from "redux";
+import { Provider } from 'react-redux';
+import rootReducer from './redux';
+
+const store = createStore(
+  rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  // <React.StrictMode>
+  //   <App />
+  // </React.StrictMode>,
+
+  <Provider store={store}>
+    <App/>
+  </Provider>,
   document.getElementById('root')
 );
 
