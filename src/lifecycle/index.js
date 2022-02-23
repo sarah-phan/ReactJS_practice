@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import PureChild from './pure-child';
+import Child from './child';
 
 // LifeCycle chỉ áp dụng cho class, không áp dụng cho function 
 // Lifecycle là tự chạy từ trên xuống (theo thứ tự) dưới nhưng chỉ 1 lần (born to die)
@@ -9,6 +11,7 @@ export default class LifeCycle extends Component {
         console.log("constructor - chạy 1 lần duy nhất");
         this.state = {
             number: 0,
+            statusChild: true
         }
     }
 
@@ -33,6 +36,20 @@ export default class LifeCycle extends Component {
         console.log("componentDidUpdate - chạy 1 lần duy nhất")
     }
 
+    // hàm cho phép setState hay ko => true có, false ko cho update(ko có những hàm Update, render sau khi setState)
+    // shouldComponentUpdate(){
+    //     console.log("shouldComponentUpdate")
+    //     return true;
+    // }
+
+    shouldComponentUpdate(nextProps, nextState){
+        console.log("shouldComponentUpdate", nextProps, nextState)
+        if (nextState.number === 2){
+            return false;
+        }
+        return true;
+    }
+
     // render cũng là 1 lifecycle và chạy khi state thay đổi
     render() {
         console.log("render");
@@ -47,6 +64,20 @@ export default class LifeCycle extends Component {
                     })
                 }}>
                     Set State
+                </button>
+                <hr/>
+                <PureChild/>
+                <hr/>
+                {/* <Child number={this.state.number}/> */}
+                {/* Không thể hiện child ra ngoài */}
+                {this.state.statusChild && <Child number={this.state.number}/>}
+                <button className='btn btn-info' onClick={() => {
+                    this.setState({
+                        statusChild: false,
+                    });
+                }}
+                >
+                    Change Status Child
                 </button>
             </div>
         )
