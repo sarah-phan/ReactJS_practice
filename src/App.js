@@ -14,6 +14,7 @@ import LiftingStateUpCart from './shopping-cart';
 import Home from './userManagementRedux';
 import FormValidation from './formValidation';
 import LifeCycle from './lifecycle';
+import FormFormik from './formValidationFormik';
 
 function App() {
   return (
@@ -38,7 +39,8 @@ function App() {
       {/* <Home/> */}
       {/* <Home/> */}
       {/* <FormValidation/> */}
-      <LifeCycle/>
+      {/* <LifeCycle/> */}
+      <FormFormik/>
     </div>
   );
 }
